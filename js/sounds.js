@@ -177,6 +177,10 @@ class SoundManager {
             return;
         }
 
+        // Show loading state on card
+        const card = document.querySelector(`[data-sound="${soundId}"]`);
+        if (card) card.classList.add('loading');
+
         try {
             const audio = new Audio(soundData.file);
             audio.loop = true;
@@ -194,11 +198,18 @@ class SoundManager {
                 await audio.play();
             }
 
+            // Remove loading, show active
+            if (card) {
+                card.classList.remove('loading');
+                card.classList.add('active');
+            }
+
             console.log('🎵 Playing:', soundId);
             window.dispatchEvent(new CustomEvent('soundStarted', { detail: { soundId, volume } }));
 
         } catch (error) {
             console.error('Error playing sound:', soundId, error);
+            if (card) card.classList.remove('loading');
             this.activeSounds.delete(soundId);
         }
     }

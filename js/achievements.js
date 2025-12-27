@@ -115,8 +115,6 @@ class AchievementManager {
     init() {
         this.createModal();
         this.trackUsageTime();
-        this.checkTimeBasedAchievements();
-        this.updateStreak();
     }
 
     loadStats() {
@@ -158,7 +156,6 @@ class AchievementManager {
             if (typeof soundManager !== 'undefined' && soundManager.getActiveSounds().length > 0) {
                 this.stats.totalMinutes = (this.stats.totalMinutes || 0) + 1;
                 this.saveStats();
-                this.checkAllAchievements();
             }
         }, 60000);
     }
