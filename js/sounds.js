@@ -178,7 +178,7 @@ class SoundManager {
         }
 
         // Show loading state on card
-        const card = document.querySelector(`[data-sound="${soundId}"]`);
+        const card = document.querySelector(`[data-sound-id="${soundId}"]`);
         if (card) card.classList.add('loading');
 
         try {
