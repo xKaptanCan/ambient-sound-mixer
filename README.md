@@ -12,7 +12,7 @@
 
 *Create your perfect soundscape by mixing high-quality ambient sounds*
 
-[Live Demo](https://your-demo-url.com) · [Report Bug](../../issues) · [Request Feature](../../issues)
+[🚀 Live Demo](https://xkaptancan.github.io/ambient-sound-mixer/) · [Report Bug](../../issues) · [Request Feature](../../issues)
 
 </div>
 
