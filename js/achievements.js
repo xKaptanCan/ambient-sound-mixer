@@ -152,6 +152,17 @@ class AchievementManager {
         localStorage.setItem('zenith-unlocked-achievements', JSON.stringify(this.unlockedAchievements));
     }
 
+    trackUsageTime() {
+        // Track usage time every minute
+        setInterval(() => {
+            if (typeof soundManager !== 'undefined' && soundManager.getActiveSounds().length > 0) {
+                this.stats.totalMinutes = (this.stats.totalMinutes || 0) + 1;
+                this.saveStats();
+                this.checkAllAchievements();
+            }
+        }, 60000);
+    }
+
     createModal() {
         this.modal = document.createElement('div');
         this.modal.id = 'achievements-modal';

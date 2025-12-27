@@ -527,7 +527,8 @@ class ZenithApp {
 
         // Update current preset name
         const preset = presetManager.getCurrentPreset();
-        document.getElementById('current-preset').textContent = preset?.name || 'None';
+        const presetEl = document.getElementById('current-preset');
+        if (presetEl) presetEl.textContent = preset?.name || 'None';
 
         // Update orbs
         this.updateOrbs();
