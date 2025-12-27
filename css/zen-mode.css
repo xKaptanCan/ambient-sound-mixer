@@ -1,0 +1,327 @@
+/* ===================================
+   ZENITH AMBIENT - ZEN MODE (Fullscreen)
+   =================================== */
+
+.zen-mode {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+    cursor: none;
+}
+
+.zen-mode.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.zen-mode.active.show-cursor {
+    cursor: default;
+}
+
+/* Zen Background */
+.zen-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+#zen-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+/* Zen Content */
+.zen-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Zen Clock */
+.zen-clock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.zen-time {
+    font-size: 8rem;
+    font-weight: 200;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 60px rgba(99, 102, 241, 0.3);
+    font-variant-numeric: tabular-nums;
+}
+
+.zen-date {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 300;
+    margin-top: 10px;
+}
+
+/* Zen Orbs - Active Sounds */
+.zen-orbs {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 600px;
+}
+
+.zen-orb {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px var(--accent-glow);
+    animation: float 6s ease-in-out infinite, pulse-glow 4s ease-in-out infinite;
+    transition: all 0.5s ease;
+}
+
+.zen-orb:nth-child(2) {
+    animation-delay: -1s;
+}
+
+.zen-orb:nth-child(3) {
+    animation-delay: -2s;
+}
+
+.zen-orb:nth-child(4) {
+    animation-delay: -3s;
+}
+
+.zen-orb:nth-child(5) {
+    animation-delay: -4s;
+}
+
+.zen-orb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 60px var(--accent-glow);
+}
+
+/* Zen Quote */
+.zen-quote {
+    max-width: 600px;
+    padding: 0 20px;
+    opacity: 0;
+    animation: fadeIn 2s ease forwards;
+    animation-delay: 1s;
+}
+
+.zen-quote p {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+.zen-quote .author {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.3);
+    font-style: normal;
+}
+
+/* Zen Controls - Show on mouse move */
+.zen-controls {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 2;
+}
+
+.zen-mode.show-controls .zen-controls {
+    opacity: 1;
+}
+
+.zen-volume {
+    width: 300px;
+    padding: 16px 24px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(20px);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.zen-volume .slider {
+    width: 100%;
+}
+
+.btn-zen-exit {
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-zen-exit:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* Timer Display in Zen Mode */
+.zen-timer {
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    padding: 16px 24px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 2;
+}
+
+.zen-mode.show-controls .zen-timer {
+    opacity: 1;
+}
+
+.zen-timer-label {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.zen-timer-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    font-family: 'Courier New', monospace;
+}
+
+/* Gradient Background Animation */
+.zen-gradient {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center,
+            rgba(99, 102, 241, 0.1) 0%,
+            rgba(139, 92, 246, 0.05) 30%,
+            transparent 70%);
+    animation: zen-breathe 8s ease-in-out infinite;
+}
+
+@keyframes zen-breathe {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+/* Stars Background */
+.zen-stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.zen-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Responsive Zen Mode */
+@media (max-width: 768px) {
+    .zen-time {
+        font-size: 4rem;
+    }
+
+    .zen-date {
+        font-size: 1rem;
+    }
+
+    .zen-orb {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .zen-quote p {
+        font-size: 1rem;
+    }
+
+    .zen-volume {
+        width: 80%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .zen-time {
+        font-size: 3rem;
+    }
+
+    .zen-orbs {
+        gap: 16px;
+    }
+
+    .zen-orb {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+}

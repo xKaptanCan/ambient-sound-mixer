@@ -1,0 +1,153 @@
+/* ===================================
+   ZENITH AMBIENT - BREATHING EXERCISES
+   Animated breathing UI
+   =================================== */
+
+/* Breathing Modal */
+.breathing-modal .modal-content {
+    max-width: 500px;
+    min-height: 400px;
+}
+
+.breathing-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-xl);
+    position: relative;
+}
+
+.breathing-close {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+}
+
+.breathing-intro {
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+
+/* Technique Selection */
+.breathing-techniques {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    width: 100%;
+}
+
+.breathing-technique-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.breathing-technique-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+}
+
+.breathing-technique-icon {
+    font-size: 2rem;
+}
+
+.breathing-technique-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.breathing-technique-title {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.breathing-technique-desc {
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+}
+
+/* Exercise View */
+.breathing-exercise {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xl);
+    width: 100%;
+}
+
+.breathing-circle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-xl);
+}
+
+.breathing-circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: var(--gradient-accent);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 40px var(--accent-glow);
+    transition: transform 4s ease-in-out, background 0.5s ease;
+}
+
+.breathing-phase {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.breathing-countdown {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-family: 'Courier New', monospace;
+}
+
+.breathing-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.breathing-technique-name {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.breathing-cycle {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+}
+
+.breathing-controls {
+    display: flex;
+    gap: var(--space-md);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .breathing-techniques {
+        grid-template-columns: 1fr;
+    }
+
+    .breathing-circle {
+        width: 150px;
+        height: 150px;
+    }
+}

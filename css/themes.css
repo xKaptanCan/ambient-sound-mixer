@@ -1,0 +1,394 @@
+/* ===================================
+   ZENITH AMBIENT - DYNAMIC THEMES
+   18 Themes with unique visual effects
+   =================================== */
+
+/* Base theme variables */
+:root {
+    --bg-primary: #0a0a14;
+    --bg-secondary: #14141f;
+    --bg-card: rgba(30, 30, 45, 0.7);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.4);
+    --accent-primary: #8b5cf6;
+    --accent-secondary: #06b6d4;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --particle-color: transparent;
+}
+
+/* ===== DARK THEME (Default) ===== */
+[data-theme="dark"] {
+    --bg-primary: #0a0a14;
+    --bg-secondary: #14141f;
+    --accent-primary: #8b5cf6;
+    --accent-secondary: #06b6d4;
+}
+
+/* ===== NIGHT THEME ===== */
+[data-theme="night"] {
+    --bg-primary: #050510;
+    --bg-secondary: #0d0d1c;
+    --bg-card: rgba(20, 20, 35, 0.8);
+    --accent-primary: #6366f1;
+    --accent-secondary: #3b82f6;
+}
+
+/* ===== LIGHT THEME ===== */
+[data-theme="light"] {
+    --bg-primary: #f0f4f8;
+    --bg-secondary: #e2e8f0;
+    --bg-card: rgba(255, 255, 255, 0.8);
+    --text-primary: #1e293b;
+    --text-secondary: rgba(30, 41, 59, 0.8);
+    --text-muted: rgba(30, 41, 59, 0.5);
+    --accent-primary: #7c3aed;
+    --border-color: rgba(0, 0, 0, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.5);
+}
+
+/* ===== SNOW THEME ❄️ ===== */
+[data-theme="snow"] {
+    --bg-primary: #1a2634;
+    --bg-secondary: #253444;
+    --bg-card: rgba(255, 255, 255, 0.1);
+    --accent-primary: #60a5fa;
+    --accent-secondary: #e0f2fe;
+    --particle-color: #ffffff;
+}
+
+[data-theme="snow"] #background-canvas {
+    background: linear-gradient(180deg, #1a2634 0%, #0f1822 50%, #1a2634 100%);
+}
+
+/* ===== RAIN THEME 🌧️ ===== */
+[data-theme="rain"] {
+    --bg-primary: #0f1419;
+    --bg-secondary: #1a2028;
+    --bg-card: rgba(30, 40, 55, 0.7);
+    --accent-primary: #3b82f6;
+    --accent-secondary: #60a5fa;
+    --particle-color: rgba(100, 150, 255, 0.6);
+}
+
+[data-theme="rain"] #background-canvas {
+    background: linear-gradient(180deg, #1a1f2a 0%, #0d1117 100%);
+}
+
+/* ===== FIRE THEME 🔥 ===== */
+[data-theme="fire"] {
+    --bg-primary: #1a0a0a;
+    --bg-secondary: #2a1515;
+    --bg-card: rgba(60, 30, 20, 0.7);
+    --accent-primary: #f97316;
+    --accent-secondary: #fbbf24;
+    --particle-color: #ff6b35;
+}
+
+[data-theme="fire"] #background-canvas {
+    background: linear-gradient(180deg, #2a1a10 0%, #1a0a05 50%, #0a0505 100%);
+}
+
+/* ===== FOREST THEME 🌲 ===== */
+[data-theme="forest"] {
+    --bg-primary: #0a1a0f;
+    --bg-secondary: #152a1a;
+    --bg-card: rgba(20, 50, 30, 0.7);
+    --accent-primary: #22c55e;
+    --accent-secondary: #86efac;
+    --particle-color: rgba(100, 200, 100, 0.4);
+}
+
+[data-theme="forest"] #background-canvas {
+    background: linear-gradient(180deg, #0d1f12 0%, #081510 50%, #050f08 100%);
+}
+
+/* ===== OCEAN THEME 🌊 ===== */
+[data-theme="ocean"] {
+    --bg-primary: #051525;
+    --bg-secondary: #0a2035;
+    --bg-card: rgba(10, 40, 70, 0.6);
+    --accent-primary: #06b6d4;
+    --accent-secondary: #22d3ee;
+    --particle-color: rgba(50, 180, 220, 0.3);
+}
+
+[data-theme="ocean"] #background-canvas {
+    background: linear-gradient(180deg, #0a2540 0%, #051525 50%, #030d15 100%);
+    animation: ocean-wave 10s ease-in-out infinite;
+}
+
+@keyframes ocean-wave {
+
+    0%,
+    100% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 0% 10%;
+    }
+}
+
+/* ===== SUNSET THEME 🌅 ===== */
+[data-theme="sunset"] {
+    --bg-primary: #1a0f1a;
+    --bg-secondary: #2a1525;
+    --bg-card: rgba(80, 40, 60, 0.5);
+    --accent-primary: #f472b6;
+    --accent-secondary: #fbbf24;
+    --particle-color: rgba(255, 150, 100, 0.2);
+}
+
+[data-theme="sunset"] #background-canvas {
+    background: linear-gradient(180deg, #2a1020 0%, #40203a 30%, #502040 50%, #201030 100%);
+}
+
+/* ===== AURORA THEME 🌌 ===== */
+[data-theme="aurora"] {
+    --bg-primary: #050a15;
+    --bg-secondary: #0a1525;
+    --bg-card: rgba(20, 40, 60, 0.5);
+    --accent-primary: #22d3ee;
+    --accent-secondary: #a855f7;
+    --particle-color: rgba(100, 255, 200, 0.3);
+}
+
+[data-theme="aurora"] #background-canvas {
+    background: linear-gradient(180deg,
+            #030810 0%,
+            #051520 30%,
+            #081a30 50%,
+            #0a1020 100%);
+    animation: aurora-shift 15s ease-in-out infinite;
+}
+
+@keyframes aurora-shift {
+
+    0%,
+    100% {
+        filter: hue-rotate(0deg);
+    }
+
+    50% {
+        filter: hue-rotate(30deg);
+    }
+}
+
+/* ===== SAKURA THEME 🌸 ===== */
+[data-theme="sakura"] {
+    --bg-primary: #1a0f15;
+    --bg-secondary: #2a1a25;
+    --bg-card: rgba(60, 40, 55, 0.5);
+    --accent-primary: #ec4899;
+    --accent-secondary: #f9a8d4;
+    --particle-color: #ffc0cb;
+}
+
+[data-theme="sakura"] #background-canvas {
+    background: linear-gradient(180deg, #1a1020 0%, #201530 50%, #150a18 100%);
+}
+
+/* ===== GALAXY THEME 🌠 ===== */
+[data-theme="galaxy"] {
+    --bg-primary: #050510;
+    --bg-secondary: #0a0a1a;
+    --bg-card: rgba(30, 20, 50, 0.5);
+    --accent-primary: #a855f7;
+    --accent-secondary: #c084fc;
+    --particle-color: #ffffff;
+}
+
+[data-theme="galaxy"] #background-canvas {
+    background: radial-gradient(ellipse at center, #1a1035 0%, #0a0515 50%, #050510 100%);
+}
+
+/* ===== AUTUMN THEME 🍂 ===== */
+[data-theme="autumn"] {
+    --bg-primary: #1a1008;
+    --bg-secondary: #2a1a10;
+    --bg-card: rgba(60, 40, 20, 0.6);
+    --accent-primary: #f59e0b;
+    --accent-secondary: #ea580c;
+    --particle-color: #cd853f;
+}
+
+[data-theme="autumn"] #background-canvas {
+    background: linear-gradient(180deg, #201510 0%, #1a0f08 50%, #100a05 100%);
+}
+
+/* ===== NEON THEME 💜 ===== */
+[data-theme="neon"] {
+    --bg-primary: #0a0510;
+    --bg-secondary: #150a1a;
+    --bg-card: rgba(40, 20, 60, 0.6);
+    --accent-primary: #d946ef;
+    --accent-secondary: #22d3ee;
+    --particle-color: rgba(200, 100, 255, 0.4);
+}
+
+[data-theme="neon"] #background-canvas {
+    background: linear-gradient(135deg, #0a0515 0%, #150520 50%, #0a0510 100%);
+}
+
+[data-theme="neon"] .sound-card:hover,
+[data-theme="neon"] .sound-card.active {
+    box-shadow: 0 0 30px rgba(217, 70, 239, 0.4), 0 0 60px rgba(34, 211, 238, 0.2);
+}
+
+/* ===== DESERT THEME 🏜️ ===== */
+[data-theme="desert"] {
+    --bg-primary: #1a1510;
+    --bg-secondary: #2a2018;
+    --bg-card: rgba(60, 50, 35, 0.6);
+    --accent-primary: #fbbf24;
+    --accent-secondary: #f59e0b;
+    --particle-color: rgba(200, 180, 140, 0.3);
+}
+
+[data-theme="desert"] #background-canvas {
+    background: linear-gradient(180deg, #2a2015 0%, #1a1510 50%, #0f0a08 100%);
+}
+
+/* ===== STORM THEME ⛈️ ===== */
+[data-theme="storm"] {
+    --bg-primary: #0a0a10;
+    --bg-secondary: #15151f;
+    --bg-card: rgba(30, 30, 50, 0.7);
+    --accent-primary: #7c3aed;
+    --accent-secondary: #60a5fa;
+    --particle-color: rgba(150, 150, 255, 0.6);
+}
+
+[data-theme="storm"] #background-canvas {
+    background: linear-gradient(180deg, #1a1a2a 0%, #0a0a15 100%);
+    animation: storm-flash 8s ease-in-out infinite;
+}
+
+@keyframes storm-flash {
+
+    0%,
+    92%,
+    100% {
+        filter: brightness(1);
+    }
+
+    93%,
+    95% {
+        filter: brightness(1.8);
+    }
+
+    94%,
+    96% {
+        filter: brightness(1);
+    }
+}
+
+/* ===== ZEN THEME 🧘 ===== */
+[data-theme="zen"] {
+    --bg-primary: #0f0f0f;
+    --bg-secondary: #1a1a1a;
+    --bg-card: rgba(40, 40, 40, 0.5);
+    --accent-primary: #a8a29e;
+    --accent-secondary: #78716c;
+    --particle-color: transparent;
+}
+
+[data-theme="zen"] #background-canvas {
+    background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+}
+
+[data-theme="zen"] .sound-card {
+    border-radius: 4px;
+}
+
+/* ===== RETRO THEME 📺 ===== */
+[data-theme="retro"] {
+    --bg-primary: #1a1520;
+    --bg-secondary: #2a2030;
+    --bg-card: rgba(50, 40, 60, 0.7);
+    --accent-primary: #22d3ee;
+    --accent-secondary: #ec4899;
+    --particle-color: rgba(0, 255, 255, 0.2);
+}
+
+[data-theme="retro"] #background-canvas {
+    background: linear-gradient(180deg, #201828 0%, #1a1020 100%);
+}
+
+[data-theme="retro"]::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(0deg,
+            rgba(0, 0, 0, 0.15),
+            rgba(0, 0, 0, 0.15) 1px,
+            transparent 1px,
+            transparent 2px);
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* ===== THEME GRID STYLES ===== */
+.theme-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.theme-grid::-webkit-scrollbar {
+    width: 4px;
+}
+
+.theme-grid::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.theme-grid::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    border-radius: 4px;
+}
+
+.theme-btn {
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--glass-bg);
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.theme-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-primary);
+}
+
+.theme-btn.active {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: white;
+}
+
+/* ===== HIDE SCROLLBAR ON PANELS ===== */
+.panel-content {
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.panel-content::-webkit-scrollbar {
+    display: none;
+}

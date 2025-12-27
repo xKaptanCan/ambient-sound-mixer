@@ -1,0 +1,369 @@
+/* ===================================
+   ZENITH AMBIENT - ANIMATIONS
+   =================================== */
+
+/* Keyframe Animations */
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px var(--accent-glow), 0 0 40px var(--accent-glow);
+        transform: scale(1);
+    }
+
+    50% {
+        box-shadow: 0 0 30px var(--accent-glow), 0 0 60px var(--accent-glow);
+        transform: scale(1.05);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes bounce-soft {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Particle Animations */
+@keyframes rain-fall {
+    0% {
+        transform: translateY(-100vh) translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100vh) translateX(20px);
+        opacity: 0.3;
+    }
+}
+
+@keyframes snow-fall {
+    0% {
+        transform: translateY(-100vh) translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100vh) translateX(50px) rotate(360deg);
+        opacity: 0.5;
+    }
+}
+
+@keyframes fire-rise {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100px) scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes wave {
+
+    0%,
+    100% {
+        transform: translateX(0) scaleY(1);
+    }
+
+    50% {
+        transform: translateX(-25%) scaleY(1.1);
+    }
+}
+
+@keyframes thunder-flash {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Particle Base Styles */
+.particle {
+    position: absolute;
+    pointer-events: none;
+}
+
+.particle-rain {
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(to bottom, transparent, rgba(100, 150, 255, 0.6));
+    border-radius: 2px;
+    animation: rain-fall linear infinite;
+}
+
+.particle-snow {
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, white 0%, transparent 70%);
+    border-radius: 50%;
+    animation: snow-fall linear infinite;
+}
+
+.particle-fire {
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, #ff6b35 0%, #f7931e 50%, transparent 100%);
+    border-radius: 50%;
+    animation: fire-rise ease-out infinite;
+}
+
+.particle-leaf {
+    width: 12px;
+    height: 12px;
+    font-size: 12px;
+    animation: snow-fall linear infinite;
+}
+
+/* Orb Animations */
+.orb {
+    animation: float 4s ease-in-out infinite;
+}
+
+.orb-pulse {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Sound Card Animations */
+.sound-card {
+    animation: fadeIn 0.3s ease;
+}
+
+.sound-card.loading {
+    animation: shimmer 1.5s infinite;
+    background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-card-hover) 50%, var(--bg-card) 75%);
+    background-size: 200% 100%;
+}
+
+/* Icon Animations */
+.icon-animated {
+    transition: transform 0.3s ease;
+}
+
+.icon-animated:hover {
+    transform: scale(1.1);
+}
+
+.icon-spin {
+    animation: spin 2s linear infinite;
+}
+
+/* Button Ripple Effect */
+.btn-ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-ripple::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+}
+
+.btn-ripple:active::after {
+    animation: ripple 0.6s ease-out;
+}
+
+/* Volume Slider Animation */
+.slider-glow {
+    box-shadow: 0 0 10px var(--accent-glow);
+    transition: box-shadow 0.3s ease;
+}
+
+.slider-glow:hover {
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+/* Panel Slide Animations */
+.side-panel {
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Modal Animations */
+.modal {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-content {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Stagger Animation for Grid Items */
+.sounds-grid .sound-card:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.sounds-grid .sound-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.sounds-grid .sound-card:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.sounds-grid .sound-card:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.sounds-grid .sound-card:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.sounds-grid .sound-card:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+.sounds-grid .sound-card:nth-child(7) {
+    animation-delay: 0.35s;
+}
+
+.sounds-grid .sound-card:nth-child(8) {
+    animation-delay: 0.4s;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--bg-tertiary);
+    border-top-color: var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Visualizer Bars */
+.visualizer-bar {
+    background: var(--gradient-accent);
+    border-radius: 2px;
+    transform-origin: bottom;
+    animation: visualizer-pulse 0.5s ease infinite alternate;
+}
+
+@keyframes visualizer-pulse {
+    0% {
+        transform: scaleY(0.3);
+    }
+
+    100% {
+        transform: scaleY(1);
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

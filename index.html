@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zenith Ambient - Premium ambient sound mixer for relaxation, focus, and sleep">
+    <meta name="theme-color" content="#0a0a14">
+    <title>Zenith Ambient | Premium Sound Mixer</title>
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/zen-mode.css">
+    <link rel="stylesheet" href="css/breathing.css">
+    <link rel="stylesheet" href="css/achievements.css">
+    <link rel="stylesheet" href="css/analytics.css">
+    <link rel="stylesheet" href="css/features.css">
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div id="background-canvas"></div>
+    <div id="particles-container"></div>
+
+    <!-- Main App Container -->
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-orb"></div>
+                <h1>Zenith<span>Ambient</span></h1>
+            </div>
+            <div class="header-controls">
+                <button id="btn-presets" class="btn-icon" title="Hazır Sahneler" data-i18n-title="tooltip.presets">
+                    🎭
+                </button>
+                <button id="btn-timer" class="btn-icon" title="Zamanlayıcı" data-i18n-title="tooltip.timer">
+                    ⏰
+                </button>
+                <button id="btn-breathing" class="btn-icon" title="Nefes Egzersizi" data-i18n-title="tooltip.breath">
+                    🌬️
+                </button>
+                <button id="btn-zen" class="btn-icon" title="Tam Ekran (F)" data-i18n-title="tooltip.zen">
+                    🖥️
+                </button>
+                <button id="btn-settings" class="btn-icon" title="Ayarlar" data-i18n-title="tooltip.settings">
+                    ⚙️
+                </button>
+            </div>
+        </header>
+
+        <!-- Floating Play/Pause Button -->
+        <button id="btn-play-pause-floating" class="floating-play-pause" title="Tümünü Durdur/Başlat (Shift+Space)"
+            data-i18n-title="tooltip.play_pause" style="display: none;">
+            ⏸️
+        </button>
+
+        <!-- Master Volume -->
+        <div class="master-volume">
+            <button id="btn-mute" class="btn-mute" title="Sessiz/Sesli (M)" data-i18n-title="tooltip.mute">
+                <svg id="icon-volume" viewBox="0 0 24 24">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                </svg>
+                <svg id="icon-muted" viewBox="0 0 24 24" style="display:none">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                    <line x1="23" y1="9" x2="17" y2="15" />
+                    <line x1="17" y1="9" x2="23" y2="15" />
+                </svg>
+            </button>
+            <input type="range" id="master-slider" min="0" max="100" value="80" class="slider master-slider">
+            <span id="master-value" class="volume-value">80%</span>
+        </div>
+
+        <!-- Sound Categories Tabs -->
+        <nav class="category-tabs">
+            <button class="tab active" data-category="nature" data-i18n="cat.nature">🌿 Doğa</button>
+            <button class="tab" data-category="rain" data-i18n="cat.rain">🌧️ Yağmur</button>
+            <button class="tab" data-category="animals" data-i18n="cat.animals">🐾 Hayvanlar</button>
+            <button class="tab" data-category="places" data-i18n="cat.places">🏙️ Mekanlar</button>
+            <button class="tab" data-category="urban" data-i18n="cat.urban">🚗 Şehir</button>
+            <button class="tab" data-category="transport" data-i18n="cat.transport">🚂 Ulaşım</button>
+            <button class="tab" data-category="things" data-i18n="cat.things">🔧 Nesneler</button>
+            <button class="tab" data-category="whitenoise" data-i18n="cat.whitenoise">🎵 Gürültü</button>
+            <button class="tab" data-category="binaural" data-i18n="cat.binaural">🧘 Meditasyon</button>
+            <button class="tab" data-category="frequency" data-i18n="cat.frequency">🎛️ Frekans</button>
+        </nav>
+
+        <!-- Sounds Grid -->
+        <main class="sounds-container">
+            <div class="sounds-grid" id="sounds-grid">
+                <!-- Sound cards will be dynamically generated -->
+            </div>
+        </main>
+
+        <!-- Active Sounds Orbs -->
+        <div class="orbs-container" id="orbs-container">
+            <!-- Orbs will be dynamically generated -->
+        </div>
+    </div>
+
+    <!-- Floating Random Button -->
+    <button id="btn-random" class="floating-random" title="Rastgele Karışım" data-i18n-title="tooltip.random">
+        🎲
+    </button>
+
+    <!-- Presets Panel -->
+    <div id="presets-panel" class="side-panel">
+        <div class="panel-header">
+            <h2 data-i18n="presets.title">🎨 Presetler</h2>
+            <button class="btn-close" data-close="presets-panel">×</button>
+        </div>
+        <div class="panel-content">
+            <div class="preset-section">
+                <h3 data-i18n="presets.builtin">Hazır Sahneler</h3>
+                <div class="presets-list" id="builtin-presets"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timer Panel -->
+    <div id="timer-panel" class="side-panel">
+        <div class="panel-header">
+            <h2 data-i18n="timer.title">⏱️ Zamanlayıcı</h2>
+            <button class="btn-close" data-close="timer-panel">×</button>
+        </div>
+        <div class="panel-content">
+            <!-- Sleep Timer -->
+            <div class="timer-section">
+                <h3 data-i18n="timer.sleep">😴 Uyku Zamanlayıcı</h3>
+                <div class="timer-buttons">
+                    <button class="timer-btn" data-minutes="15" data-i18n="timer.15min">15 dk</button>
+                    <button class="timer-btn" data-minutes="30" data-i18n="timer.30min">30 dk</button>
+                    <button class="timer-btn" data-minutes="45" data-i18n="timer.45min">45 dk</button>
+                    <button class="timer-btn" data-minutes="60" data-i18n="timer.1hour">1 saat</button>
+                    <button class="timer-btn" data-minutes="90" data-i18n="timer.1_5hour">1.5 saat</button>
+                    <button class="timer-btn" data-minutes="120" data-i18n="timer.2hours">2 saat</button>
+                </div>
+                <div class="timer-display" id="sleep-timer-display">
+                    <span class="timer-time">--:--</span>
+                    <button class="timer-cancel" id="cancel-sleep" style="display:none"
+                        data-i18n="timer.cancel">İptal</button>
+                </div>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="fade-out-toggle" checked>
+                    <span data-i18n="timer.fadeout">Son 5 dakikada yavaşça kapat</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Settings Panel -->
+        <div id="settings-panel" class="side-panel">
+            <div class="panel-header">
+                <h2 data-i18n="settings.title">⚙️ Ayarlar</h2>
+                <button class="btn-close" data-close="settings-panel">×</button>
+            </div>
+            <div class="panel-content">
+                <div class="setting-group">
+                    <h3 data-i18n="settings.themes">🎨 Temalar</h3>
+                    <div class="theme-grid">
+                        <button class="theme-btn active" data-theme="dark" data-i18n="theme.dark">🌙 Karanlık</button>
+                        <button class="theme-btn" data-theme="night" data-i18n="theme.night">🌑 Gece</button>
+                        <button class="theme-btn" data-theme="light" data-i18n="theme.light">☀️ Açık</button>
+                        <button class="theme-btn" data-theme="snow" data-i18n="theme.snow">❄️ Kar</button>
+                        <button class="theme-btn" data-theme="rain" data-i18n="theme.rain">🌧️ Yağmur</button>
+                        <button class="theme-btn" data-theme="fire" data-i18n="theme.fire">🔥 Ateş</button>
+                        <button class="theme-btn" data-theme="forest" data-i18n="theme.forest">🌲 Orman</button>
+                        <button class="theme-btn" data-theme="ocean" data-i18n="theme.ocean">🌊 Okyanus</button>
+                        <button class="theme-btn" data-theme="sunset" data-i18n="theme.sunset">🌅 Gün Batımı</button>
+                        <button class="theme-btn" data-theme="aurora" data-i18n="theme.aurora">🌌 Aurora</button>
+                        <button class="theme-btn" data-theme="sakura" data-i18n="theme.sakura">🌸 Sakura</button>
+                        <button class="theme-btn" data-theme="galaxy" data-i18n="theme.galaxy">🌠 Galaksi</button>
+                        <button class="theme-btn" data-theme="autumn" data-i18n="theme.autumn">🍂 Sonbahar</button>
+                        <button class="theme-btn" data-theme="neon" data-i18n="theme.neon">💜 Neon</button>
+                        <button class="theme-btn" data-theme="desert" data-i18n="theme.desert">🏜️ Çöl</button>
+                        <button class="theme-btn" data-theme="storm" data-i18n="theme.storm">⛈️ Fırtına</button>
+                        <button class="theme-btn" data-theme="zen" data-i18n="theme.zen">🧘 Zen</button>
+                        <button class="theme-btn" data-theme="retro" data-i18n="theme.retro">📺 Retro</button>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <h3 data-i18n="settings.sound">🎚️ Ses Davranışı</h3>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="meander-toggle">
+                        <span data-i18n="settings.meander">Meander (Doğal dalgalanma)</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="crossfade-toggle" checked>
+                        <span data-i18n="settings.crossfade">Cross-fade geçişler</span>
+                    </label>
+                </div>
+                <div class="setting-group">
+                    <h3 data-i18n="settings.visual">🎨 Görsel Efektler</h3>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="day-night-toggle">
+                        <span data-i18n="settings.daynight">Day/Night Otomatik Tema</span>
+                    </label>
+                </div>
+                <div class="setting-group">
+                    <h3 data-i18n="settings.language">🌍 Dil / Language</h3>
+                    <select id="language-selector" class="language-select">
+                        <option value="tr">🇹🇷 Türkçe</option>
+                        <option value="en">🇬🇧 English</option>
+                        <option value="es">🇪🇸 Español</option>
+                        <option value="fr">🇫🇷 Français</option>
+                        <option value="de">🇩🇪 Deutsch</option>
+                        <option value="pt">🇧🇷 Português</option>
+                        <option value="ru">🇷🇺 Русский</option>
+                        <option value="zh">🇨🇳 中文</option>
+                        <option value="ja">🇯🇵 日本語</option>
+                        <option value="ar">🇸🇦 العربية</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <h3 data-i18n="settings.usage">📊 Kullanım</h3>
+                    <div class="settings-buttons">
+                        <button id="btn-analytics" class="settings-action-btn" data-i18n="settings.stats">
+                            📈 İstatistikler
+                        </button>
+                        <button id="btn-achievements" class="settings-action-btn" data-i18n="settings.achievements">
+                            🏆 Başarılar
+                        </button>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <h3 data-i18n="settings.about">ℹ️ Hakkında</h3>
+                    <p class="about-text">Zenith Ambient v2.0<br>Premium Ambient Sound Mixer</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Zen Mode Fullscreen -->
+        <div id="zen-mode" class="zen-mode">
+            <div class="zen-background">
+                <canvas id="zen-canvas"></canvas>
+            </div>
+            <div class="zen-content">
+                <div class="zen-clock" id="zen-clock">
+                    <span class="zen-time">00:00</span>
+                    <span class="zen-date"></span>
+                </div>
+                <div class="zen-orbs" id="zen-orbs"></div>
+                <div class="zen-quote" id="zen-quote"></div>
+            </div>
+            <div class="zen-controls">
+                <div class="zen-volume">
+                    <input type="range" id="zen-master-slider" min="0" max="100" value="80" class="slider">
+                </div>
+                <button id="exit-zen" class="btn-zen-exit" data-i18n="zen.exit">ESC ile çık</button>
+            </div>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div id="toast-container"></div>
+
+        <!-- Keyboard Shortcuts Help -->
+        <div id="shortcuts-modal" class="modal">
+            <div class="modal-content">
+                <h2 data-i18n="shortcuts.title">⌨️ Klavye Kısayolları</h2>
+                <div class="shortcuts-list">
+                    <div class="shortcut"><kbd>Space</kbd> <span data-i18n="shortcuts.space">Oynat/Duraklat</span></div>
+                    <div class="shortcut"><kbd>F</kbd> <span data-i18n="shortcuts.f">Zen Modu</span></div>
+                    <div class="shortcut"><kbd>M</kbd> <span data-i18n="shortcuts.m">Sessiz/Sesli</span></div>
+                    <div class="shortcut"><kbd>↑</kbd><kbd>↓</kbd> <span data-i18n="shortcuts.arrows">Master Ses</span>
+                    </div>
+                    <div class="shortcut"><kbd>1-9</kbd> <span data-i18n="shortcuts.numbers">Hızlı Preset</span></div>
+                    <div class="shortcut"><kbd>S</kbd> <span data-i18n="shortcuts.s">Kaydet</span></div>
+                    <div class="shortcut"><kbd>R</kbd> <span data-i18n="shortcuts.r">Rastgele Mix</span></div>
+                    <div class="shortcut"><kbd>?</kbd> <span data-i18n="shortcuts.help">Bu menü</span></div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-primary" data-close="shortcuts-modal" data-i18n="common.ok">Tamam</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script src="js/sounds.js"></script>
+        <script src="js/frequency.js"></script>
+        <script src="js/presets.js"></script>
+        <script src="js/particles.js"></script>
+        <script src="js/timer.js"></script>
+        <script src="js/storage.js"></script>
+        <script src="js/favorites.js"></script>
+        <script src="js/breathing.js"></script>
+        <script src="js/achievements.js"></script>
+        <script src="js/analytics.js"></script>
+        <script src="js/i18n.js"></script>
+        <script src="js/keyboard.js"></script>
+        <script src="js/app.js"></script>
+</body>
+
+</html>
