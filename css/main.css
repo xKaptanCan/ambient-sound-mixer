@@ -414,6 +414,11 @@ body {
     animation: pulse 1s ease-in-out infinite;
 }
 
+.sound-card.loading .sound-name::after {
+    content: ' ⏳';
+    animation: blink 1s ease-in-out infinite;
+}
+
 .sound-card.loading::after {
     content: '';
     position: absolute;
@@ -444,6 +449,18 @@ body {
 
     50% {
         opacity: 1;
+    }
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
     }
 }
 
