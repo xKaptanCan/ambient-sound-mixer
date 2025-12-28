@@ -131,10 +131,10 @@ class FrequencyGenerator {
     playCustom(hz) {
         const id = 'custom-hz';
 
-        // If already playing custom, stop it first
+        // If already playing custom, stop it and return false (toggle off)
         if (this.activeOscillators.has(id)) {
             this.stop(id);
-            return this.playSolfeggio(hz, id);
+            return false;
         }
 
         return this.playSolfeggio(hz, id);
